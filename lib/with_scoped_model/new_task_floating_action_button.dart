@@ -42,7 +42,8 @@ class NewTaskFloatingActionButton extends StatelessWidget {
                                     ));
                                   },
                                 ),
-                          )
+                            rebuildOnChange: false,
+                          ),
                         ],
                       ),
                     ),
