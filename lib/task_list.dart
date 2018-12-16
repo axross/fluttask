@@ -4,23 +4,25 @@ import 'package:meta/meta.dart';
 
 class TaskList extends StatefulWidget {
   final List<Task> tasks;
-  final TaskStateChangeCallback onChangeTask;
-  final TaskDeletionCallbackonDeleteTask onDeleteTask;
+  final TaskCallback onFinishTask;
+  final TaskCallback onUnfinishTask;
+  final TaskCallback onDeleteTask;
 
   TaskList({
     @required this.tasks,
-    @required this.onChangeTask,
+    @required this.onFinishTask,
+    @required this.onUnfinishTask,
     @required this.onDeleteTask,
   })  : assert(tasks != null),
-        assert(onChangeTask != null),
+        assert(onFinishTask != null),
+        assert(onUnfinishTask != null),
         assert(onDeleteTask != null);
 
   @override
   State<StatefulWidget> createState() => _TaskListState();
 }
 
-typedef void TaskStateChangeCallback(Task oldTask, Task newTask);
-typedef void TaskDeletionCallbackonDeleteTask(Task task);
+typedef void TaskCallback(Task task);
 
 class _TaskListState extends State<TaskList> {
   @override
@@ -76,13 +78,13 @@ class _TaskListState extends State<TaskList> {
   void _finishTask(Task task) {
     assert(!task.isFinished);
 
-    widget.onChangeTask(task, task.finish());
+    widget.onFinishTask(task);
   }
 
   void _unfinishTask(Task task) {
     assert(task.isFinished);
 
-    widget.onChangeTask(task, task.unfinish());
+    widget.onUnfinishTask(task);
   }
 }
 

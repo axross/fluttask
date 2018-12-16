@@ -28,7 +28,8 @@ class _TaskListRouteState extends State<StatefulWidget> {
         ),
         body: TaskList(
           tasks: _tasks,
-          onChangeTask: _replaceTask,
+          onFinishTask: _finishTask,
+          onUnfinishTask: _unfinishTask,
           onDeleteTask: _deleteTask,
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -57,9 +58,15 @@ class _TaskListRouteState extends State<StatefulWidget> {
             NewTaskFloatingActionButton(onAddNewTask: _addTask),
       );
 
-  void _replaceTask(Task oldTask, Task newTask) {
+  void _finishTask(Task task) {
     setState(() {
-      _tasks[_tasks.indexOf(oldTask)] = newTask;
+      _tasks[_tasks.indexOf(task)] = task.finish();
+    });
+  }
+
+  void _unfinishTask(Task task) {
+    setState(() {
+      _tasks[_tasks.indexOf(task)] = task.unfinish();
     });
   }
 
