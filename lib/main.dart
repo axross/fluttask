@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:fluttask/with_stateful_widget/task_list_route.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:fluttask/with_stateful_widget/task_list_screen.dart';
+import 'package:fluttask/with_scoped_model/task_list_model.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,7 +13,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: TaskListRoute(),
+      home: TaskListScreen(),
+      builder: (context, child) => ScopedModel(
+            model: TaskListModel(),
+            child: child,
+          ),
     );
   }
 }
