@@ -26,18 +26,15 @@ typedef void TaskCallback(Task task);
 
 class _TaskListState extends State<TaskList> {
   @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: EdgeInsets.symmetric(vertical: 16),
-      itemBuilder: (context, index) => index < widget.tasks.length
-          ? _buildTaskItem(widget.tasks[index])
-          : _buildNewTaskCreater(),
-      separatorBuilder: (context, index) => Divider(),
-      itemCount: widget.tasks.length,
-    );
-  }
+  Widget build(BuildContext context) => ListView.separated(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        itemBuilder: (context, index) =>
+            _buildTaskItem(context, widget.tasks[index]),
+        separatorBuilder: (context, index) => Divider(),
+        itemCount: widget.tasks.length,
+      );
 
-  Widget _buildTaskItem(Task task) => ListTile(
+  Widget _buildTaskItem(BuildContext context, Task task) => ListTile(
         title: Text(task.title),
         subtitle: task.isFinished
             ? Text(
@@ -72,8 +69,6 @@ class _TaskListState extends State<TaskList> {
           },
         ),
       );
-
-  Widget _buildNewTaskCreater() => Container();
 
   void _finishTask(Task task) {
     assert(!task.isFinished);

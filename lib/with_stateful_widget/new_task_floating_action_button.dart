@@ -11,8 +11,10 @@ class NewTaskFloatingActionButton extends StatelessWidget {
         super(key: key);
 
   @override
-  Widget build(BuildContext context) => FloatingActionButton(
-        child: Icon(Icons.add_comment),
+  Widget build(BuildContext context) => FloatingActionButton.extended(
+        icon: Icon(Icons.add),
+        label: Text('New Task'),
+        elevation: 2,
         onPressed: () => showModalBottomSheet(
               context: context,
               builder: (context) => AnimatedPadding(

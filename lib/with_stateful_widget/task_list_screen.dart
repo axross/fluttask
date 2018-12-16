@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fluttask/new_task_floating_action_button.dart';
 import 'package:fluttask/task.dart';
-import 'package:fluttask/task_list.dart';
 import 'package:fluttask/task_list_route_app_bar.dart';
+import 'package:fluttask/with_stateful_widget/new_task_floating_action_button.dart';
+import 'package:fluttask/with_stateful_widget/task_list.dart';
 
 class TaskListScreen extends StatefulWidget {
   @override
@@ -33,30 +33,9 @@ class _TaskListScreenState extends State<StatefulWidget> {
           onUnfinishTask: _unfinishTask,
           onDeleteTask: _deleteTask,
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              title: Text('All'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              title: Text('Unfinished'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              title: Text('Finished'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              title: Text('Settings'),
-            ),
-          ],
-          onTap: (tappedIndex) => print(tappedIndex),
-        ),
         floatingActionButton:
             NewTaskFloatingActionButton(onAddNewTask: _addTask),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       );
 
   void _finishTask(Task task) {
