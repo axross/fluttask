@@ -26,7 +26,11 @@ class _TaskListRouteState extends State<StatefulWidget> {
           title: Text('with StatefulWidget'),
           elevation: 1,
         ),
-        body: TaskList(tasks: _tasks, onChangeTask: _replaceTask),
+        body: TaskList(
+          tasks: _tasks,
+          onChangeTask: _replaceTask,
+          onDeleteTask: _deleteTask,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: [
@@ -51,7 +55,6 @@ class _TaskListRouteState extends State<StatefulWidget> {
         ),
         floatingActionButton:
             NewTaskFloatingActionButton(onAddNewTask: _addTask),
-        // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       );
 
   void _replaceTask(Task oldTask, Task newTask) {
@@ -63,6 +66,12 @@ class _TaskListRouteState extends State<StatefulWidget> {
   void _addTask(Task task) {
     setState(() {
       _tasks.add(task);
+    });
+  }
+
+  void _deleteTask(Task task) {
+    setState(() {
+      _tasks.remove(task);
     });
   }
 }

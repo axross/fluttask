@@ -5,18 +5,22 @@ import 'package:meta/meta.dart';
 class TaskList extends StatefulWidget {
   final List<Task> tasks;
   final TaskStateChangeCallback onChangeTask;
+  final TaskDeletionCallbackonDeleteTask onDeleteTask;
 
   TaskList({
     @required this.tasks,
     @required this.onChangeTask,
+    @required this.onDeleteTask,
   })  : assert(tasks != null),
-        assert(onChangeTask != null);
+        assert(onChangeTask != null),
+        assert(onDeleteTask != null);
 
   @override
   State<StatefulWidget> createState() => _TaskListState();
 }
 
 typedef void TaskStateChangeCallback(Task oldTask, Task newTask);
+typedef void TaskDeletionCallbackonDeleteTask(Task task);
 
 class _TaskListState extends State<TaskList> {
   @override
@@ -46,6 +50,25 @@ class _TaskListState extends State<TaskList> {
                 icon: Icon(Icons.check, color: Theme.of(context).disabledColor),
                 onPressed: () => _finishTask(task),
               ),
+        trailing: PopupMenuButton(
+          icon: Icon(Icons.more_vert),
+          itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: TaskActions.Delete,
+                  child: ListTile(
+                    title: Text('Delete'),
+                    leading: Icon(Icons.delete),
+                  ),
+                ),
+              ],
+          onSelected: (value) {
+            switch (value) {
+              case TaskActions.Delete:
+                widget.onDeleteTask(task);
+                break;
+            }
+          },
+        ),
       );
 
   Widget _buildNewTaskCreater() => Container();
@@ -62,3 +85,5 @@ class _TaskListState extends State<TaskList> {
     widget.onChangeTask(task, task.unfinish());
   }
 }
+
+enum TaskActions { Delete }
