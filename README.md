@@ -1,19 +1,18 @@
 # fluttask
 
-A new Flutter project.
+An example Flutter project in order to make sure state management in Flutter.
 
-## Getting Started
+I will implement 3 patterns of state management through making a TO-DO app.
 
-This project is a starting point for a Flutter application.
+- [x] with Stateful Widget
+- [x] with [Scoped Model](https://pub.dartlang.org/packages/scoped_model)
+- [ ] with ["Business Logic Component" pattern](https://medium.com/flutter-io/13950959e381#b8da)
 
-A few resources to get you started if this is your first Flutter project:
+# Latest build
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+WIP
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+I will make latest build to be public and able to download.
 
 # License
 
