@@ -27,7 +27,7 @@ class Task {
       );
 
   @override
-  int get hashCode => createdAt.millisecond;
+  int get hashCode => (17 + title.hashCode) * 37 + createdAt.hashCode;
 
   @override
   bool operator ==(Object task) =>
