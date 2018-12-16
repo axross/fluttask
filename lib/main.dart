@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Fluttask',
       theme: ThemeData(
+        fontFamily: 'Rubik',
         primarySwatch: Colors.red,
       ),
       home: TaskListScreen(),
