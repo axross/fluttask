@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttask/with_bloc/task_list_route.dart' as withBloc;
 import 'package:fluttask/with_scoped_model/task_list_route.dart'
     as withScopedModel;
 import 'package:fluttask/with_stateful_widget/task_list_route.dart'
@@ -20,6 +21,10 @@ Widget buildTaskListScreenAppBar(BuildContext context, TaskListKind kind) =>
                   value: TaskListKind.WithScopedModel,
                   child: Text('with Scoped Model'),
                 ),
+                PopupMenuItem(
+                  value: TaskListKind.WithBloc,
+                  child: Text('with BLoC'),
+                ),
               ],
           onSelected: (value) {
             switch (value) {
@@ -30,6 +35,10 @@ Widget buildTaskListScreenAppBar(BuildContext context, TaskListKind kind) =>
               case TaskListKind.WithScopedModel:
                 Navigator.of(context)
                     .pushReplacement(withScopedModel.createTaskListRoute());
+                break;
+              case TaskListKind.WithBloc:
+                Navigator.of(context)
+                    .pushReplacement(withBloc.createTaskListRoute());
                 break;
             }
           },
@@ -43,6 +52,8 @@ String _getTitle(TaskListKind kind) {
       return 'with Stateful Widget';
     case TaskListKind.WithScopedModel:
       return 'with Scoped Model';
+    case TaskListKind.WithBloc:
+      return 'with BLoC pattern';
   }
 
   return 'Unknown';
@@ -51,4 +62,5 @@ String _getTitle(TaskListKind kind) {
 enum TaskListKind {
   WithStatefulWidget,
   WithScopedModel,
+  WithBloc,
 }
